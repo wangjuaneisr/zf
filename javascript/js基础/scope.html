@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /** 
+     * 执行上下文：即 预编译，定了一个函数执行时的环境，每次函数执行的时候，产生的执行上下文(AO{}即时存储空间)是不一样的
+     * 作用域：[[scope]]指的就是作用域，执行上下文的集合
+    */
+
+    function a(){
+        function b(){
+
+        }
+    }
+    var glob = 100;
+    // a();
+
+    //a defined a.[[scope]] -- > scope[0]: GO {}
+    //a doing a.[[scope]] -- > scope[0]: aAO {}
+    //                         scope[1]: GO {}
+
+
+    //b defined a.[[scope]] -- > scope[0]: aAO {} 
+    //                           scope[1]: GO {}
+    //b doing a.[[scope]] -- > scope[0]: bAO {} //b
+    //                         scope[1]: aAO {} //a
+    //                         scope[2]: GO {}
+
+
+    //闭包  内部函数 保存到外部
+    function a(){
+        let num = 100;
+        function b(){
+            num ++;
+            console.log(num)
+        }
+        return b;
+    }
+
+    let demo = a();
+    demo();
+    demo();
+    console.log(demo.name)
+    console.log(a.name)
+
+    //闭包:
+    //缺点：当内部函数被保存到外部时，将会生成闭包，闭包会导致原有作用域不释放，容易造成内存泄露
+    //优点：避免全局变量污染 缓存
+
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //预编译
+//1.创建AO对象 Activation Object（执行上下文 即作用域）
+//2.找形参和变量声明 将声明的变量和形参作为AO属性名 
+function fn(a){
+    console.log(a);//function a(){}
+
+    var a = 123;
+
+    console.log(a);//123
+
+    function a(){}
+
+    console.log(a)//123
+
+
+}
+
+// fn(1)
+
+let str = false +1 ;
+if(typeof(null) && -true + (+undefined) + ""){
+    console.log(!" ") //object && -1 + NAN + "" ==> "undefined" + "NAN"
+}
+
+
+</script>
+</html>
