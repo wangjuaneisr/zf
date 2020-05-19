@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>浏览器是单线程 =》 只有一个线程来渲染</p>
+    <p>异步：event Quque事件队列, eventLoop : 主栈任务 > 微任务队列 > 宏任务队列</p>
+    <p>微任务：aysnc await\promise\nextTick</p>
+    <p>宏任务: 定时器 、事件绑定、ajax\axios</p>
+</body>
+<script>
+    async function async1() {
+        console.log('async1 start')
+        await async2();
+        console.log('async1 end')
+    }
+    async function async2() {
+        console.log('async2')
+    }
+
+    console.log('script start')
+    setTimeout(() => {
+        console.log('setTimeout')
+    }, 0);
+
+    async1();
+    new Promise((resolve) => {
+        console.log('promise1');
+        resolve();
+    }).then(() => {
+        console.log('promise2');
+    })
+
+    console.log('script end')
+    // script start
+    // async1 start
+    // async2
+    // promise1
+    // script end
+    // async1 end
+    // promise2
+    // setTimeout
+
+    // 对象==字符串 null == undefined NaN != NaN
+    let aa = {
+        x:0,
+        toString(){
+            return ++ this.x
+        }
+    };
+   console.log(aa == 1)
+   console.log(aa == 2)
+   console.log(aa == 3)
+</script>
+
+</html>

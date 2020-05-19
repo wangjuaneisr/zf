@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML55</title>
+</head>
+<body>
+    <dl>
+        <dt>HTML5</dt>
+        <dd>语义化标签</dd>
+        <dd>音视频处理</dd>
+        <dd>canvas/weblGL</dd>
+        <dd>history API</dd>
+        <dd>requestAnimationFrame</dd>
+        <dd>地理位置</dd>
+        <dd>webSocket</dd>
+    </dl>
+    <p>什么是标签语义化：块元素、行内元素、行业块元素</p>
+
+    <dl>
+        <dt>CSS3</dt>
+        <dd>常规</dd>
+        <dd>动画</dd>
+        <dd>盒子模型</dd>
+        <dd>响应式布局</dd>
+    </dl>
+    <p>固定宽高水平垂直居中</p>
+    <div class="father">
+        <div class="box"></div>
+    </div>
+    <p>左右固定 中间适应</p>
+    <p>圣杯</p>
+    <div class="container clearfix" style="height: 100%;padding: 0 200px;">
+        <div class="center" style="width: 100%;"></div>
+        <div class="left" style="float: left;margin-left: -100%;position: relative;left: -200px;"></div>
+        <div class="right" style="margin-right: -200px;"></div>
+    </div>
+    <p>双飞翼</p>
+        <div class="container" style="float: left;padding:0 200px;">
+            <div class="center"></div>
+        </div>
+        <div class="left" style="float: left;"></div>
+        <div class="right" style="float: left;"></div>
+    <p>flex</p>
+    <div class="container" style="display: flex; justify-content: space-between;">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </div>
+    <p>定位</p>
+    <div class="container">
+            <div class="left"></div>
+            <div class="center"></div>
+            <div class="right"></div>
+        </div>
+    <style>
+        html,body{
+            height: 100%;
+        }
+         /*元素固定宽高*/
+        .box{
+            position: absolute;
+            width: 100px;
+            height: 100px;;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50% ,-50%);
+            /*margin-left: -50px;
+            margin-top: -50px;*/
+            /*top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;*/
+        }
+         /*flex弹性盒子*/
+        .box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /*父级元素固定宽高*/
+        .father{
+            width: 100px;
+            height: 100px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .box{
+            display: inline-block;
+        }
+
+        /*左右固定 中间适应*/
+        
+    </style>
+   
+    <dl>
+        <dt>javascript</dt>
+        <dd>ES3/5/6/7/8/9</dd>
+        <dd>DOM</dd>
+        <dd>BOM</dd>
+        <dd>
+            <dl>
+                <dt>底层原理</dt>
+                <dd>堆栈内存</dd>
+                <dd>闭包作用域</dd>
+                <dd>面向对象OOP</dd>
+                <dd>THIS</dd>
+                <dd>EventLopp</dd>
+                <dd>浏览器渲染原理</dd>
+                <dd>回流重绘</dd>
+            </dl>
+        </dd>
+    </dl>
+
+    <dl>
+        <dt>网络通信层</dt>
+        <dd>AJAX/Fetch/axios</dd>
+        <dd>HTTP</dd>
+        <dd>TCP</dd>
+        <dd>跨域处理方案</dd>
+        <dd>性能优化</dd>
+    </dl>
+
+    <dl>
+        <dt>Hybrid app 小程序</dt>
+        <dd>Hybrid</dd>
+        <dd>uni-app</dd>
+        <dd>RN</dd>
+        <dd>Flutter</dd>
+        <dd>小程序MPVUE</dd>
+        <dd>Weex</dd>
+        <dd>PWA</dd>
+    </dl>
+
+    <dl>
+        <dt>webpack</dt>
+        <dd>git</dd>
+        <dd>linux/nginx</dd>
+    </dl>
+
+    <dl>
+        <dt>全栈方面</dt>
+        <dd>node</dd>
+        <dd>express</dd>
+        <dd>koa2</dd>
+        <dd>mongodb</dd>
+        <dd>nuxt.js / next.js</dd>
+    </dl>
+
+    <dl>
+        <dt>框架方面</dt>
+        <dd>Angular</dd>
+        <dd>Vue</dd>
+        <dd>React</dd>
+    </dl>
+
+    <dl>
+        <dt>游戏方向</dt>
+    </dl>
+
+</body>
+</html>

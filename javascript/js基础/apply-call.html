@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+<body>
+   
+</body>
+<script>
+/**
+ * number.toFixed(js精度不足) 使用Math.floor(number) Math.ceil() Math.random()
+ * 
+ * */
+/**
+ * apply call
+ * test() ---> test.call();
+ * 
+ */
+
+//  function Person(name,age){
+//     //this = obj ;
+//     this.name = name;
+//     this.age = age;
+
+//  }
+//  function Student(name,age,sex){
+//     Person.call(this,name,age);
+//     this.sex = sex;
+//  }
+//  let person = new Person('deng',100);
+//  let obj = {};
+//  Person.call(obj,'wang',28)
+
+//  let student = new Student('deng',100,'male');
+
+function Wheel(wheelSize,style){
+   this.style = style;
+   this.wheelSize = wheelSize;
+}
+function Sit(c,sitColor){
+   this.c = c;
+   this.sitColor = sitColor;
+}
+function Model(height,width,len){
+   this.height = height;
+   this.width = width;
+   this.len = len;
+}
+function Car(c,sitColor,height,width,len){
+   
+   Sit.call(this,c,sitColor);
+   Model.call(this,height,width,len)
+}
+
+
+
+let car = new Car('真皮','red',1800,1900,4900);
+// Wheel.apply(car,[100,'花里胡哨']);
+
+/**
+ * call 需要把实参按照形参的个数一个个传进去
+ * apply 需要传一个数组
+ * Model.call(this,height,width,len) this代表一个对象
+*/
+</script>
+</html>

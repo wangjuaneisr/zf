@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>prototype</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     *  prototype 原型
+     *  Person.prototype = {} 是祖先
+     *  constructor 默认构造器
+     *  Person.prototype.__proto__ = Object.prototype
+     *  let obj = Object.create(原型)) Object.create(null)没有原型链
+    */
+
+    let obj = {name:'w'}
+    let obj1 = Object.create(obj);
+    Person.prototype.lastName = 'Wang';
+    function Person(name,age,sex){
+        // 通过new 构造对象的时候  隐式发生了如下步骤 沿着__proto__找属性
+        //let this = {
+        //     __proto__ : Person.prototype
+        // };
+    }
+    let person = new Person();
+
+    Person.prototype = {
+        "lastName":'Sun'
+    }
+    console.log(person.lastName)  // Wang
+
+    person = new Person();
+    console.log(person.lastName)  // Sun
+
+
+    Chinese.prototype = person;
+    function Chinese(){
+
+    }
+    let chinese = new Chinese();
+
+    Hunanren.prototype = chinese;
+    function Hunanren(){
+
+    }
+    let hunanren = new Hunanren();
+
+
+    /**
+     * 
+    */
+
+
+
+
+
+</script>
+</html>

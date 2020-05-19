@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类数组 / 去重</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+ * 类数组：
+ * 索引为数字
+ * 属性必须有length
+ * length决定哪一位开始赋值
+*/
+let obj = {
+    "2":'a',
+    "3":'b',
+    "length":3,
+    "push":Array.prototype.push,
+    "splice":Array.prototype.splice
+}
+
+// Array.prototype.push = function(target){
+//     obj[obj.length] = target;
+//     obj.length ++;
+// }
+
+
+//封装type 区分 数组、对象、函数、数字、包装类（数字类型的对象）
+function type(target){
+    let template = {
+        '[object Array]':'Array',
+        '[object Object]':'object',
+        '[object Number]':'number-object',
+        '[object Boolean]':'Boolean-object',
+        '[object String]':'String-object'
+    }
+    if(target === null )return null;
+
+   if((typeof target) == 'object'){
+        let tp = Object.prototype.toString(target);
+        // console.log(tp)
+        return template[tp]
+    }else{
+        return typeof(target)
+    }
+
+}
+
+
+//数组去除 原型链编程
+Array.prototype.unique = function(){
+
+    let args = this,
+        ret=[],
+        obj={};
+
+    arr.forEach((item,index)=>{
+            if(!obj[item]){
+                obj[item] = 'abc';
+                ret.push(item);
+            }
+    })
+
+   return ret;
+
+}
+let arr = [1,1,1,1,1,1,1,2,1,2,1,2,7,7,8,8,0];
+// console.log('去重',arr.unique());
+</script>
+</html>

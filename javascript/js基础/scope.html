@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>执行上下文/闭包/立即执行函数</title>
 </head>
 <body>
     
@@ -20,12 +20,11 @@
         }
     }
     var glob = 100;
-    // a();
+    // a();//todo 
 
     //a defined a.[[scope]] -- > scope[0]: GO {}
     //a doing a.[[scope]] -- > scope[0]: aAO {}
     //                         scope[1]: GO {}
-
 
     //b defined a.[[scope]] -- > scope[0]: aAO {} 
     //                           scope[1]: GO {}
@@ -33,8 +32,11 @@
     //                         scope[1]: aAO {} //a
     //                         scope[2]: GO {}
 
-
-    //闭包  内部函数 保存到外部
+    /** 
+     * 闭包  内部函数 保存到外部
+     * 缺点：当内部函数被保存到外部时，将会生成闭包，闭包会导致原有作用域不释放，容易造成内存泄露
+     * 优点：避免全局变量污染 缓存
+    */
     function a(){
         let num = 100;
         function b(){
@@ -45,15 +47,30 @@
     }
 
     let demo = a();
-    demo();
-    demo();
-    console.log(demo.name)
-    console.log(a.name)
+    // demo();//todo 
+    // demo();//todo 
+    // console.log(demo.name)
+    // console.log(a.name)
 
-    //闭包:
-    //缺点：当内部函数被保存到外部时，将会生成闭包，闭包会导致原有作用域不释放，容易造成内存泄露
-    //优点：避免全局变量污染 缓存
+    /**
+     * 立即执行函数
+     * 针对初始化功能的函数
+     * 解决闭包的问题 执行完后立即销毁
+     * 只有表达式才能被执行符号()执行,函数声明不能被执行 **
+     * 被（）执行后就变成了立即执行函数，执行完成后销毁了 **
+     * (function (){}())//w3c建议这种写法
+     * (function (){})()
+    */
+   
+    let tg = (function (a,b,c){//形参 abc
+        return (a + b + 2*c)
+    })(1,2,3);//实参 123
 
+    // console.log(tg)
+    let test = function(){
+        console.log("‘可以执行’");
+    }()//‘可以执行’
 
+   
 </script>
 </html>

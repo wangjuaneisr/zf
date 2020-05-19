@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.js面试题</title>
+</head>
+<body>
+    <span></span>
+    <input type="text">
+</body>
+<script>
+    let spanName = document.getElementsByTagName('span')[0];
+    let inpName = document.getElementsByTagName('input')[0];
+    // let obj = {
+    //     name:''
+    // }
+
+//defineProperty方法：需要对原始数据克隆，需要对所有属性依次设定
+    // let newObj = JSON.parse(JSON.stringify(obj));
+    // Object.defineProperty(obj,'name',{
+    //     get(){
+    //         return newObj.name;
+    //     },
+    //     set(val){
+    //         if(val === newObj.name) return;
+    //         newObj.name = val;
+    //         obsever();
+    //     }
+    // })
+
+//proxy
+let obj = {};
+obj = new Proxy(obj,{
+    get(target,prop){
+        console.log('A')
+        return target[prop];
+    },
+    set(target,prop,value){
+        console.log('AB')
+        target[prop] = value;
+        obsever();
+        
+    }
+})
+function obsever(){
+        spanName.innerHTML = obj.name;
+        inpName.value = obj.name;
+    }
+
+    inpName.oninput = function(){
+        obj.name = this.value;
+    }
+
+</script>
+</html>

@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>继承/命名空间/枚举</title>
+</head>
+<body>
+   
+</body>
+<script>
+/**
+ * apply call
+ */
+Father.prototype.lastName = 'Wang';
+function Father(){
+
+}
+function Son(){
+
+}
+
+function inherit(Target,Origin){
+   // Target.prototype = Origin.prototype;
+   // 圣杯模式
+   function F(){}
+   Target.prototype = Origin.prototype;
+   Target.prototype = new F();
+   Target.prototype.constructor = Target;
+   Target.prototype.uber = Origin.prototype;
+}
+inherit(Son,Father);
+
+let son = new Son();
+let father = new Father();
+
+/**
+ * son.__proto__ --> new F().__proto__ --> Father.prorotype
+ * ①__proto__和constructor属性是对象所独有的；
+ * ② prototype属性是函数所独有的。但是由于JS中函数也是一种对象，所以函数也拥有__proto__和constructor属性
+*/
+
+
+
+
+/**
+ * 命名空间 避免污染全局变量
+ * 
+*/
+let name = 'bcd';
+let init  =  (function(){
+   let name = 'abc';
+   function callName(){
+      // console.log(name);
+   }
+   return function(){
+      callName();
+   }
+}())
+
+init();
+// console.log(name);
+// init.callName();
+
+/**
+ * 方法连续调用 return this
+ * 
+*/
+let  Obj = {
+   smoke:function(){
+      console.log('....smoke cool!')
+      return this;
+   },
+   drink:function(){
+      console.log('.....drink cool too!')
+      return this;
+   }
+}
+// Obj.smoke().drink();
+
+
+
+/**
+ * 遍历 枚举enumeration
+*/
+let arr = [1,2,3,4,5,6,7,8];
+let obj1 = {
+   name:1,
+   age:12,
+   sex:'male',
+   height:'160',
+   weight:'51'
+}
+Object.prototype.abc = 123;
+obj1.__proto__.son = 456;
+
+// for in 
+for(let i in obj1){
+   if(obj1.hasOwnProperty(i)){//判断该属性是否自身属性 排除原型链上的属性比如上面的abc
+      // console.log(i +':'+obj1[i]);
+   }
+   
+}
+
+// Object.keys(obj).map
+Object.keys(obj1).map(key=>{
+   // console.log(key+':'+obj1[key]);
+})
+
+
+/**
+ * 区分数组/对象
+ * A对象 是不是 B构造函数构造出来的
+ * 看A对象的原型链上有没有B的原型
+ * A instanceof B
+*/
+let Person = function(name,age){
+   this.name = name;
+   this.age = age;
+}
+let person = new Person();
+
+// person instanceof Object;
+
+Object.prototype.toString.call([])//[Object Array]
+Object.prototype.toString.call({})//[Object Object]
+Object.prototype.toString.call(123)//[Object Number]
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * 闭包： 实现共有变量 &  缓存 & 封装
+    */
+    // var --> let可以解决问题
+    function test(){
+        var arr =[];
+        for(var i = 0; i < 10; i ++){
+            // arr[i] = function(){
+            //     document.write(i + " ")
+            // }
+            (function(j){
+                arr[j] = function(){
+                    document.write(j + " ")
+                }
+            }(i))
+            
+        }
+        return arr;//函数被返回了 
+    }
+    var myArr = test();
+
+    for(var j = 0; j < 10; j ++){
+        //执行的时候i 已经到10了 公用arr
+        myArr[j]();
+    }
+</script>
+</html>

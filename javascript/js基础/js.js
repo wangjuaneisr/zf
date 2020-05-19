@@ -112,3 +112,33 @@ function nm(arr,sum){
 }
 nm([1,2,3,4,5,6,7,8,9],13)
 
+
+//发布Publish
+function Publish(){
+    this.listeners = [];
+    addListener = function(listener){
+        this.listeners.push(listener);
+    },
+    removeListener = function(listener){
+        delete this.listeners[listener]
+    },
+    notify = function(obj){
+        for(let i = 0;i < listeners.length; i ++){
+            let listener = listeners[i];
+            if(typeof listener != 'undefined'){
+                listener.proccess(obj);
+            }
+        }
+    }
+    
+}
+
+//订阅
+function Subscriber(){
+    proccess = function(obj){
+        console.log(obj)
+    }
+}
+ let pub = new Publish();
+ pub.addListener(new Subscriber());
+ pub.notify({name:1,age:2})

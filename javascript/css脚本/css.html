@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css脚本化</title>
+</head>
+<body>
+    <div>1213131</div>
+</body>
+<script>
+    let div = document.getElementsByTagName('div')[0];
+    //window.getComputedStyle(div,'after')//伪元素样式表
+    // window.getComputedStyle(div,null)[prop] 只读样式 获取最后展示的效果
+    // div.currentStyle
+
+    //兼容写法 获取元素的样式属性值
+    function getStyle(elem,prop){
+        if(window.getComputedStyle){
+            return window.getComputedStyle(elem,null)[prop];
+        }else{
+            return elem.currentStyle[prop];
+        }
+    }
+</script>
+</html>

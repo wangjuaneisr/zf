@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>json 异步加载 时间线</title>
+    <script></script>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj = {name:"abc",age:"123"};
+    let str = JSON.stringify(obj)
+    JSON.parse(str);
+    // domTree + cssTree = renderTree
+
+    // defer 等待dom文档全部解析完 才会执行 IE9 以下有效  script里面可以写代码
+    //<script type="text/javascript" defer>
+    //async IE9 以上有效  W3C标准  script里面不可以写代码，只能加载外部文件
+
+    // 一步加载
+    function loadScript(url,cb){
+        let script = document.createElement('script');
+        script.type = "text/javascript";
+        script.src = url;
+
+        // IE
+        if(script.readyState){
+            script.onreadystatechange = function(){
+                if(script.readyState == 'comlpete' || script.readyState == 'loaded'){
+                    tools[cb]();
+                }
+            }
+        }else{
+            // 非IE 
+            script.onload = function(){
+                tools[cb]();
+            }
+        }
+
+       
+        document.head.appendChild(script);
+    }
+    loadScript('a.js',"test")
+    // loadScript('a.js',function(){
+    //     tools.test();//a.js  里面的函数
+    // })
+
+
+</script>
+</html>

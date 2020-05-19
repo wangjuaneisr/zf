@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js时间线</title>
+</head>
+<body>
+    <!-- 
+        1、创建document对象，开始解析web页面。 document.readyState = 'loading';
+
+        2、遇到link外部css，创建新的线程 ，继续解析文档
+
+        3、遇到script外部js，并没有设置async、defer，浏览器加载，并阻塞进程，等待js加载完成执行该文件
+
+        4、遇到script外部js，并设置async、defer，浏览器创建线程加载，并继续解析，等阿迪文件加载完成后立即执行
+
+        5、遇到img先正常解析dom结构 异步加载src 继续解析文档
+
+        6、当文档解析完成后 document.readyState = 'interactive';
+
+        7、文档解析完成后，所有设置有defer的脚本会按顺序执行
+
+        8、同步执行完毕，转换为时间驱动阶段
+
+        9、当异步脚本加载完毕 并执行完毕后
+
+     -->
+</body>
+<script>
+    // console.log(document.readyState)
+    document.onreadystatechange = function(){
+        console.log(document.readyState)
+    }
+    window.onload = function(){
+        
+    }
+    
+</script>
+</html>

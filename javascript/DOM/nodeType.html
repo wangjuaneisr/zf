@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择器 节点选择</title>        
+</head>
+<body>
+    <div class="2e3324" name="faasf">
+        <strong>
+            1
+        </strong>
+        <p>2</p>
+        <em>3</em>
+        <span>4</span>
+    </div>
+    
+</body>
+<script>
+
+    let div = document.getElementsByTagName('div')[0];
+    let strong = document.getElementsByTagName('strong')[0];
+    let text = document.createTextNode('葱爆');
+    let span = document.getElementsByTagName('span')[0];
+
+    //appendChild 相当于 push + 剪切功能
+    // span.appendChild(text)
+    // div.appendChild(span);
+
+    //parent.insertBefore(a,b)  --->  insert a ,Before b
+    //parent.removeChild(child) 删除子元素
+    //child.remove(); 删除自身
+    //parentNode.replaceChild(new, origin)
+    //element.innerHTML 
+    //element.innerText
+    //setAttribute getAttribute 属性设置/获取
+
+    /**
+    * 返回父元素
+    */
+    function retParent(elem,n){
+        while(elem && n){
+            elem = elem.parentElement;
+            n--;
+        }
+        return elem;
+    }
+
+    /**
+    * 返回兄弟节点
+    * 没有后一个元素 就找前面的
+    */
+function retSibling(e,n){
+    // console.log(e)
+    while( e && n){
+        if( n > 0){
+            if(e.nextElementSibling){
+                e = e.nextElementSibling;
+            }else{
+                for(e = e.nextSibling;e.nodeType != 1; e = e.nextSibling);
+            }
+            n--;
+        }else{
+            if(e.previousElementSibling){
+                e = e.previousElementSibling;
+            }else{
+                for(e = e.previousSibling;e.nodeType != 1; e = e.previousSibling);
+            }
+            n++;
+        }
+        return e;
+    }
+}
+
+//insertBefore改写 insertAfter
+Element.prototype.insertAfter = function(targetNode,afterNode){
+
+    let beforeNode = afterNode.nextElementSibling;
+    console.log(beforeNode)
+    if(beforeNode != null){
+        this.insertBefore(targetNode,beforeNode)
+    }else{
+        this.appendChild(targetNode)
+    }
+}
+// div.insertAfter(text,span);
+
+//appendChild 剪切功能
+function reverse(targetNode){
+    console.log(targetNode.children)
+    let len = targetNode.children.length-1;
+    for(let i = len ;i > -1;i -- ){
+        // children
+        targetNode.appendChild(targetNode.children[i]);
+        console.log(targetNode)
+    }
+
+}
+reverse(div);
+
+</script>
+</html>

@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象、包装类</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+// let mrSun = {
+//     name:'sun xiu cong',
+//     age:40,
+//     sex:"male",
+//     smoke(){
+//         this.age --;
+//     },
+//     devorce(){
+
+//     },
+//     getMarried(){
+
+//     }
+// }
+// mrSun.smoke();
+
+/**
+ * 1. 对象字面量 var obj = {}
+ * 2. 构造函数 :建议大驼峰命名 工厂模式
+ *      1）系统自带的构造函数 new Object()  
+ *      2) 自定义
+ * 
+ * NEW 的时候隐式发生了3个步骤：1 var this = {}; 2.执行this.xxx = xxx 3.return this;
+ * 有显式的 return {} 如果是原始值 默认返回this
+*/
+
+function Student(name, age, sex){
+    //let this = {};
+    //this.name = name;
+    this.name = name;
+    this.age = age;
+    this.sex = sex;
+    //return this;
+    
+
+}
+
+let student = new Student();
+
+
+
+/**
+ * 包装类
+ * 原始值不能操作属性
+*/
+let str = 'abcd';
+
+str.length = 2;
+str.abc = 'qwqww'
+//new String().abc = qwqww ;delete;
+
+str.abc // undefined
+//new String(str).length
+str.length //
+// console.log(str.length)
+
+// let st = 'abd';
+// str += 1;
+// var t = typeof(str);
+// console.log(t)
+// if(t.length == 6){
+//     t.sign  = 'typeof 返回的结果可能是string'
+// }
+// console.log(t.sign)
+
+
+/**
+ * 写一个方法 求一个字符串长度
+ * 字符串有一个方法charCodeAt() 一个中文占两个字节 一个英文占一个字节
+ * Unicode >  255 中文 两字节
+ * Unicode <= 255 英文 一个字节
+*/
+　let str = 'hi world'
+
+</script>
+</html>

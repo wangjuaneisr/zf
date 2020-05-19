@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*数组：数字属性名 == 字符串属性名*/
+let a = {},b = '0',c = 0;
+a[b] = '1111';
+a[c] = '2222'
+// console.log(a[b])
+
+
+/*Symbol 唯一性*/
+let e = Symbol('1'),f = Symbol('1');
+a[e] = '1111';
+a[f] = '2222';
+// console.log(a[e])
+// console.log(a[f])
+
+let obj = {true:1,null:1,undefined:1,'1':1,1:2,Symbol:1}
+
+/*自己实现一个Symbol ？？？*/
+/* 闭包 */
+let test = (function(i){
+    return function(){
+        alert(i *= 2);
+    }
+})(2);
+// test(5);
+
+let h = 0, i = 0;
+function A(h){
+    A = function(i){
+        alert( h + i ++)
+    }
+    alert(h ++)
+}
+A(1);
+A(2);
+
+</script>
+</html>

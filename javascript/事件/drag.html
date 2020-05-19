@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽事件</title>
+</head>
+<style>
+    .box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: red;
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<body>
+    <div class="box" style="position: absolute;left: 0;
+    top: 0;
+    background: red;
+    width: 200px;
+    height: 200px;"></div>
+</body>
+<script>
+    let div = document.getElementsByTagName('div')[0];
+    let disX,disY;
+    div.onmousedown = function(e){
+        // console.log(e)
+        disX = e.pageX - parseInt(div.style.left);
+        disY = e.pageY - parseInt(div.style.top);
+
+        document.onmousemove = function(e){
+            // console.log(e.pageX, e.pageY)
+            let evt = e || window.event;
+            div.style.left = e.pageX - disX  + "px";
+            div.style.top = e.pageY - disY + "px";
+        }
+
+        document.onmouseup = function(){
+            // console.log(disX, disY)
+            document.onmousemove = null;
+        }
+
+    }
+</script>
+</html>

@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clone</title>
+</head>
+<body></body>
+<script>
+    /**
+     * 深拷贝:新建存储地址,切断与原对象的引用关系
+     *  主要针对引用类型 如:数组/对象 做特殊处理
+    */
+    let a = {
+        b:function(){},
+        c:[1212,233,212,4444,7777],
+        d:{
+            "key":"asdad"
+        },
+        f:123
+    };
+
+    function deepClone(origin,target){
+        target = target || {};
+            for( let prop in origin){
+                let item = origin[prop];
+                if(origin.hasOwnProperty(prop)){
+                    //如果是数组或者对象，不能直接拷贝，先新建引用地址
+                    if(typeof item == 'object' && item !== 'null'){
+                        target[prop] = (Object.prototype.toString.call(item) == "[Object Array]") ? []:{};
+                        deepClone(item,target[prop])
+                    }else{
+                        target[prop] = origin[prop]
+                    }
+                }
+            }
+            return target;
+    }
+
+
+
+Object.prototype.clone = function(){
+    // 克隆的结果 与对象所属类保持一致
+    let o = new this.constructor;
+    console.log('aaa: '+this)
+    if(typeof this !== 'object' || this === null) return this;
+    if(this instanceof RegExp) return new RegExp(this);
+    if(this instanceof Date) return new Date(this);
+    for(let i in this){
+        if(this.hasOwnProperty(i)){
+            console.log('bbb: '+this[i])
+            return o[i] = this[i].clone();
+        }
+    }
+    return o;
+}
+let b = {};
+b = Object.prototype.clone.call(a);
+</script>
+</html>

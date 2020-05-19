@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组 类数组 对象</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * 数组的构造方法
+     * es:
+     * ECMAScript DOM操作html元素 BOM浏览器
+     * push pop shift unshift 改变原数组，返回长度
+     * 
+     * sort 
+    */
+    let arr = [7,1,8,3,50,2];//undefined 稀松数组
+    let brr = new Array(10);//只传一个参数且该参数是数字（不能传小数） 10会被认为是数组长度
+
+    //重写push
+    // Array.prototype.push = function(){
+    //     for(let i=0;i<arguments.length;i++){
+    //         this[this.length] = arguments[i];
+    //     }
+    //     return this.length
+    // }
+
+    //重写unshift
+    // Array.prototype.myunshift = function(){
+    //     let crr = [];
+    //     for(let i=0;i<arguments.length;i++){
+    //         crr[i] = arguments[i];
+    //     }
+    //     this =  crr[i].concat(this);
+    //     return this.length
+    // }
+
+    /**
+     * sort 按ASCALL码排序
+     * 1.当返回值为负数时，那么前面的数放在前面
+     * 2.为正数时 后面的数在前
+     * 3.为 0 不到
+    */
+    arr.sort((a,b)=>{
+        return a - b
+        //return a.age - b.age
+    });
+
+    function truncate(arr) {
+    if(arr.length == 0)return arr;
+        return arr.slice(arr.length-2,arr.length-1)
+    }
+    // console.log(truncate([1,2,3]));
+
+
+    function duplicates(arr) {
+        let ret = [];    
+        for(let i = 0; i < arr.length; i++){
+            let a = arr[i];
+            let brr = arr.slice(i+1);
+            let index = ret.indexOf(a);
+            if(index == -1){
+                if(brr.indexOf(a) != -1){
+                    ret.push(a);
+                }
+            }
+        }
+        return ret;
+        
+    }
+    // console.log(duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3]))
+
+    function findAllOccurrences(arr, target) {
+        let brr = [];
+         arr.map((item,index)=> {
+            if(item == target){
+                brr.push(index);
+            }
+        })
+
+        return brr;
+    }
+    // console.log(findAllOccurrences([1, 2, 4, 4, 3, 3, 1, 5, 3],3))
+
+    function count(start, end) {
+        let count = start;
+        let obj = {
+            cancel:function(){
+                clearInterval(timer);
+            }
+        }
+        console.log(count);
+        
+        let timer = 
+            setInterval(()=>{
+                count++; 
+                if(count == end)obj.cancel(timer);
+                console.log(count);
+        },100);
+        return obj;
+    }
+    // count(1,6)
+
+
+    function argsAsArray(fn, arr) {
+        fn.apply(null,arr)
+    }
+    // argsAsArray(function (greeting, name, punctuation) {console.log(greeting + ', ' + name + (punctuation || '!')) ;}, ['Hello', 'Ellie', '!']);
+
+
+
+    function functionFunction(str) {
+        console.log(arguments)
+        
+    }
+    // functionFunction('Hello')('world')
+    // console.log(functionFunction('Hello')('world')('Hello')('world'))
+
+
+    function makeClosures(arr, fn) {
+        return arr.map((item)=>{
+                    return fn(item)
+                })
+    }
+    let result = makeClosures([1, 2, 3],function (x) {return x * x; });
+    console.log(result[1])
+
+</script>
+</html>

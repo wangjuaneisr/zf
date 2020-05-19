@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<div>click</div>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+</body>
+<script>
+//句柄  onclick
+let div = document.getElementsByTagName('div')[0];
+// 不兼容IE addEventListener(事件类型，处理函数，false)  W3C 标准 添加事件
+let i = 0;
+div.addEventListener('click',()=>{
+    console.log(i++)
+},false)
+// attachEvent 
+
+
+//给li绑定事件
+// let li = document.getElementsByTagName('li');
+// for(let j = 0; j < li.length; j ++){
+//     li[j].addEventListener('click',function(){
+//             console.log(j)
+//         },false)
+// }
+let c = 0;
+function handle(e){
+   
+    console.log('handle work'+c++)
+}
+
+var li = document.getElementsByTagName('li');
+for(var j = 0; j < li.length; j ++){
+    (function(j){
+        
+        addEvent(li[j],'click',handle,false)
+    }(j))
+}
+
+//绑定事件兼容写法
+function addEvent(elem,type,handle){
+    
+    if(elem.addEventListener){
+        elem.addEventListener(type,handle,false);
+    }else if(elem.attachEvent){
+        elem.attachEvent('on'+type,()=>{
+            handle.call(elem)
+        })
+    }else{
+        elem['on'+type] = handle;
+    }
+}
+// div.removeEventListener('click',handle,false);
+
+// 取消冒泡兼容写法
+function stopBubble(event){
+
+    if(event.stopPropagetion){
+        event.stopPropagetion();
+    }else{
+        event.cancelBubble = true;
+    }
+}
+
+//阻止默认事件
+function cancelHandler(e){
+    // return false;
+    //event.preventDefault() //IE不兼容
+    // event.returnValue = false; //IE兼容
+    if(e.preventDefault){
+        e.preventDefault();
+    }else{
+        e.returnValue = false;
+    }
+}
+
+document.oncontextmenu = function(e){
+    // cancelHandler(e)
+}
+</script>
+</html>

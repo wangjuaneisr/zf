@@ -8,7 +8,7 @@ let router = new Router();
 app.use(body());
 
 router.post('/api/register',async ctx=>{
-    ctx.body = '主页'；
+    ctx.body = '主页'
 } )
 
 app.use(router.routes());

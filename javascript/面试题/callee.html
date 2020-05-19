@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>callee caller</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * arguments.callee 可以用来调用立即执行函数
+     * callee、length 是 arguments所有的属性
+    */
+    function test(){
+        arguments.callee
+    }
+    test();
+
+    let num = (function(n){
+
+        if(n == 1){
+            return 1;
+        }
+        return n*arguments.callee(n-1);
+
+    }(100))
+
+    // console.log(num)
+    /**
+     * caller 返回调用者
+    */
+
+
+</script>
+</html>
